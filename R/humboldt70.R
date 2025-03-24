@@ -1874,6 +1874,7 @@ humboldt.g2e <- function(env1, env2, sp1, sp2, reduce.env = 2, reductype = "PCA"
         OcSp1Tmcp <- spTransform(OcSp1Tmcp, CRS("+proj=longlat +datum=WGS84"))
         OcSp1TmcpB <- raster::buffer(OcSp1Tmcp, width = trim.buffer.sp1v, dissolve = T)
         env1Tmcp <- SpatialPoints(env1in, CRS("+proj=longlat +datum=WGS84"))
+	crs(OcSp1TmcpB) <-  crs(env1Tmcp) # ensure equal CRS
         env1sdf <- env1Tmcp[OcSp1TmcpB, ]
         env1 <- as.data.frame(env1sdf)
         # Sp2
@@ -1883,6 +1884,7 @@ humboldt.g2e <- function(env1, env2, sp1, sp2, reduce.env = 2, reductype = "PCA"
         OcSp2Tmcp <- spTransform(OcSp2Tmcp, CRS("+proj=longlat +datum=WGS84"))
         OcSp2TmcpB <- raster::buffer(OcSp2Tmcp, width = trim.buffer.sp2v, dissolve = T)
         env2Tmcp <- SpatialPoints(env2in, CRS("+proj=longlat +datum=WGS84"))
+	crs(OcSp2TmcpB) <-  crs(env2Tmcp)
         env2sdf <- env2Tmcp[OcSp2TmcpB, ]
         env2 <- as.data.frame(env2sdf)
         options(warn = 0)
@@ -1901,6 +1903,7 @@ humboldt.g2e <- function(env1, env2, sp1, sp2, reduce.env = 2, reductype = "PCA"
         OcSp1T <- SpatialPoints(sp1[, 2:3], CRS("+proj=longlat +datum=WGS84"))
         OcSp1TmcpB <- raster::buffer(OcSp1T, width = trim.buffer.sp1v, dissolve = T)
         env1Tmcp <- SpatialPoints(env1in, CRS("+proj=longlat +datum=WGS84"))
+	crs(OcSp1TmcpB) <-  crs(env1Tmcp)
         env1sdf <- env1Tmcp[OcSp1TmcpB, ]
         env1 <- as.data.frame(env1sdf)
         # Sp2
@@ -1908,6 +1911,7 @@ humboldt.g2e <- function(env1, env2, sp1, sp2, reduce.env = 2, reductype = "PCA"
         OcSp2T <- SpatialPoints(sp2[, 2:3], CRS("+proj=longlat +datum=WGS84"))
         OcSp2TmcpB <- raster::buffer(OcSp2T, width = trim.buffer.sp2v, dissolve = T)
         env2Tmcp <- SpatialPoints(env2in, CRS("+proj=longlat +datum=WGS84"))
+	crs(OcSp2TmcpB) <-  crs(env2Tmcp)
         env2sdf <- env2Tmcp[OcSp2TmcpB, ]
         env2 <- as.data.frame(env2sdf)
         options(warn = 0)
